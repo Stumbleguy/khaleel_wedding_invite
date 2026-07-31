@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation</title>
+
+<!-- ============================================================
+  HOW TO CUSTOMIZE THIS PAGE
+  Scroll all the way down to the <script> tag near the bottom
+  and edit the WEDDING_DATA object. That single object controls
+  every name, date, venue and message on the page — you don't
+  need to touch the HTML or CSS at all.
+============================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --deep-green:#0a3626;
+    --mid-green:#123f2e;
+    --panel-green:#0e4433;
+    --gold:#c9a24b;
+    --gold-light:#e9d18e;
+    --gold-soft: rgba(201,162,75,0.35);
+    --ivory:#f7f2e6;
+    --ivory-dim: rgba(247,242,230,0.72);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--deep-green);
+    color:var(--ivory);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--gold-light);
+    opacity:0.85;
+  }
+
+  h1,h2,h3{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    margin:0;
+  }
+
+  .script{
+    font-family:'Great Vibes', cursive;
+    color:var(--gold-light);
+    line-height:1;
+  }
+
+  /* ---------- ornament: eight-point star divider ---------- */
+  .motif{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin:28px 0;
+    opacity:0.9;
+  }
+  .motif .line{
+    height:1px;
+    width:56px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .motif svg{ width:20px; height:20px; }
+
+  /* ---------- section shell ---------- */
+  section{
+    position:relative;
+    padding:90px 24px;
+    text-align:center;
+  }
+  .panel-alt{ background:var(--panel-green); }
+
+  .container{
+    max-width:640px;
+    margin:0 auto;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:60px 24px;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(201,162,75,0.10), transparent 60%),
+      var(--deep-green);
+  }
+
+  .arch-frame{
+    position:relative;
+    width:min(78vw,340px);
+    padding:52px 26px 40px;
+    border:1px solid var(--gold-soft);
+    border-radius:170px 170px 8px 8px;
+    background:rgba(201,162,75,0.03);
+  }
+  .arch-frame::before{
+    content:"";
+    position:absolute;
+    inset:10px;
+    border:1px solid var(--gold-soft);
+    border-radius:150px 150px 4px 4px;
+  }
+  .crescent-mark{
+    width:34px; height:34px;
+    margin:0 auto 18px;
+    color:var(--gold);
+    opacity:0.9;
+  }
+  .hero .eyebrow{ margin-bottom:6px; }
+  .hero-names{
+    font-size:clamp(2.6rem, 9vw, 3.6rem);
+    line-height:1.15;
+  }
+  .amp{
+    display:block;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.1rem;
+    color:var(--ivory-dim);
+    margin:6px 0;
+    letter-spacing:0.15em;
+  }
+  .hero-date{
+    margin-top:18px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.05rem;
+    letter-spacing:0.12em;
+    color:var(--ivory-dim);
+  }
+  .scroll-cue{
+    margin-top:46px;
+    font-size:0.68rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--ivory-dim);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    animation:floaty 2.6s ease-in-out infinite;
+  }
+  .scroll-cue span{ opacity:0.7; }
+  @keyframes floaty{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(6px); }
+  }
+
+  /* ---------- bismillah / invocation ---------- */
+  .invocation{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    line-height:1.8;
+    color:var(--ivory-dim);
+    max-width:520px;
+    margin:0 auto;
+  }
+
+  /* ---------- family invitation ---------- */
+  .families{
+    display:flex;
+    gap:36px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:30px;
+  }
+  .family-block{ max-width:220px; }
+  .family-block h3{
+    font-size:1.05rem;
+    letter-spacing:0.05em;
+    color:var(--gold-light);
+    margin-bottom:8px;
+  }
+  .family-block p{
+    font-size:0.92rem;
+    line-height:1.7;
+    color:var(--ivory-dim);
+    margin:0;
+  }
+  .invite-body{
+    margin-top:34px;
+    font-size:1.02rem;
+    line-height:1.9;
+    color:var(--ivory-dim);
+  }
+  .couple-line{
+    margin-top:24px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.5rem;
+    color:var(--ivory);
+  }
+
+  /* ---------- save the date ---------- */
+  .date-card{
+    display:inline-block;
+    padding:34px 46px;
+    border:1px solid var(--gold-soft);
+    border-radius:6px;
+    background:rgba(201,162,75,0.05);
+    margin-top:10px;
+  }
+  .date-card .day{
+    font-family:'Cormorant Garamond', serif;
+    font-size:3.2rem;
+    color:var(--gold-light);
+    line-height:1;
+  }
+  .date-card .month-year{
+    margin-top:6px;
+    font-size:0.85rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--ivory-dim);
+  }
+  .weekday{
+    margin-top:14px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--ivory-dim);
+  }
+  .venue-block{
+    margin-top:30px;
+  }
+  .venue-name{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.3rem;
+    color:var(--ivory);
+  }
+  .venue-address, .venue-time{
+    margin-top:6px;
+    font-size:0.92rem;
+    color:var(--ivory-dim);
+    line-height:1.6;
+  }
+  .add-calendar{
+    display:inline-block;
+    margin-top:26px;
+    padding:12px 28px;
+    border:1px solid var(--gold);
+    border-radius:999px;
+    color:var(--gold-light);
+    text-decoration:none;
+    font-size:0.8rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    transition:background 0.25s ease, color 0.25s ease;
+  }
+  .add-calendar:hover{ background:var(--gold); color:var(--deep-green); }
+
+  /* ---------- closing blessing ---------- */
+  .closing{
+    padding-bottom:60px;
+  }
+  .closing .invocation{ margin-bottom:10px; }
+  .signature-names{
+    margin-top:22px;
+    font-size:clamp(2rem,7vw,2.6rem);
+  }
+  .signature-sub{
+    margin-top:6px;
+    font-size:0.85rem;
+    letter-spacing:0.15em;
+    color:var(--ivory-dim);
+  }
+
+  /* ---------- music toggle ---------- */
+  .music-toggle{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    border:1px solid var(--gold-soft);
+    background:rgba(10,54,38,0.85);
+    backdrop-filter:blur(4px);
+    color:var(--gold-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:50;
+    transition:transform 0.2s ease, background 0.2s ease;
+  }
+  .music-toggle:hover{ transform:scale(1.06); }
+  .music-toggle svg{ width:20px; height:20px; }
+  .music-toggle.playing svg .bar{ animation:pulse 0.9s ease-in-out infinite; }
+  .music-toggle .bar:nth-child(2){ animation-delay:0.15s; }
+  .music-toggle .bar:nth-child(3){ animation-delay:0.3s; }
+  @keyframes pulse{
+    0%,100%{ transform:scaleY(0.5); }
+    50%{ transform:scaleY(1); }
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .scroll-cue{ animation:none; }
+  }
+
+  footer{
+    text-align:center;
+    padding:26px;
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    color:var(--ivory-dim);
+    opacity:0.5;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="arch-frame reveal in">
+    <svg class="crescent-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+      <path d="M15.5 3.5a8.5 8.5 0 1 0 5 15.4A9.5 9.5 0 0 1 15.5 3.5Z"/>
+      <path d="M18 6.2l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5.5-1.3Z"/>
+    </svg>
+    <div class="eyebrow" id="hero-eyebrow">Walima &amp; Nikah Invitation</div>
+    <h1 class="hero-names">
+      <span class="script" id="hero-bride" style="font-size:1.5em;"></span>
+      <span class="amp" id="hero-amp">weds</span>
+      <span class="script" id="hero-groom" style="font-size:1.5em;"></span>
+    </h1>
+    <div class="hero-date" id="hero-date"></div>
+  </div>
+  <div class="scroll-cue">
+    <span>Scroll to open</span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+  </div>
+</section>
+
+<!-- ============ INVOCATION ============ -->
+<section class="reveal">
+  <div class="container">
+    <p class="invocation" id="invocation-text"></p>
+    <div class="motif">
+      <div class="line"></div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c9a24b" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.2 2.2 6.8L12 15.6l-5.6 4.2 2.2-6.8L3 8.8h6.8L12 2z"/></svg>
+      <div class="line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAMILY INVITATION ============ -->
+<section class="panel-alt reveal">
+  <div class="container">
+    <div class="eyebrow">With Love &amp; Blessings</div>
+    <h2 style="font-size:1.6rem;margin-top:10px;">An Invitation From Our Families</h2>
+
+    <div class="families">
+      <div class="family-block">
+        <h3 id="bride-family-title"></h3>
+        <p id="bride-family-text"></p>
+      </div>
+      <div class="family-block">
+        <h3 id="groom-family-title"></h3>
+        <p id="groom-family-text"></p>
+      </div>
+    </div>
+
+    <p class="invite-body" id="invite-body-text"></p>
+    <p class="couple-line" id="couple-line-text"></p>
+  </div>
+</section>
+
+<!-- ============ SAVE THE DATE ============ -->
+<section class="reveal">
+  <div class="container">
+    <div class="eyebrow">Save The Date</div>
+    <div class="date-card">
+      <div class="day" id="save-date-day"></div>
+      <div class="month-year" id="save-date-month"></div>
+      <div class="weekday" id="save-date-weekday"></div>
+    </div>
+
+    <div class="venue-block">
+      <div class="venue-name" id="venue-name"></div>
+      <div class="venue-address" id="venue-address"></div>
+      <div class="venue-time" id="venue-time"></div>
+    </div>
+
+    <a class="add-calendar" id="calendar-link" href="#" target="_blank" rel="noopener">Add to Calendar</a>
+  </div>
+</section>
+
+<!-- ============ CLOSING BLESSING ============ -->
+<section class="panel-alt closing reveal">
+  <div class="container">
+    <p class="invocation" id="closing-text"></p>
+    <div class="motif">
+      <div class="line"></div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c9a24b" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.2 2.2 6.8L12 15.6l-5.6 4.2 2.2-6.8L3 8.8h6.8L12 2z"/></svg>
+      <div class="line"></div>
+    </div>
+    <div class="script signature-names" id="closing-names"></div>
+    <div class="signature-sub" id="closing-sub"></div>
+  </div>
+</section>
+
+<footer>Made with love</footer>
+
+<!-- ============ MUSIC TOGGLE ============ -->
+<button class="music-toggle" id="musicBtn" aria-label="Play background music">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <rect class="bar" x="5" y="9" width="2.4" height="6" rx="1"/>
+    <rect class="bar" x="10.8" y="6" width="2.4" height="12" rx="1"/>
+    <rect class="bar" x="16.6" y="10.5" width="2.4" height="4.5" rx="1"/>
+  </svg>
+</button>
+<!-- Add your own mp3 file to the repo (e.g. "song.mp3") and update the src below -->
+<audio id="bgAudio" loop preload="none">
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* ============================================================
+   EDIT EVERYTHING HERE. This is the only place you need to
+   change names, dates, venues and messages.
+============================================================= */
+const WEDDING_DATA = {
+  bride: "Ayesha",
+  groom: "Imran",
+
+  // Shown under the couple's names in the very first screen
+  heroDate: "12th • December • 2026",
+
+  // A short Quranic verse or invocation line (edit or remove as you wish)
+  invocation: "“And among His signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them, and He has put love and mercy between your hearts.” — Surah Ar-Rum 30:21",
+
+  brideFamily: {
+    title: "Bride's Family",
+    text: "Daughter of Mr. [Bride's Father] & Mrs. [Bride's Mother]"
+  },
+  groomFamily: {
+    title: "Groom's Family",
+    text: "Son of Mr. [Groom's Father] & Mrs. [Groom's Mother]"
+  },
+
+  inviteBody: "Together with their families, request the honour of your presence at the Nikah ceremony, as they begin their journey as husband and wife, In Sha Allah.",
+
+  coupleLine: "Ayesha &amp; Imran",
+
+  // Save the date card
+  dateDay: "12",
+  dateMonthYear: "December 2026",
+  dateWeekday: "Saturday",
+
+  venueName: "Green Palm Banquet Hall",
+  venueAddress: "123 Garden Avenue, Your City — 600001",
+  venueTime: "Nikah: 4:00 PM · Walima Reception: 7:30 PM",
+
+  // Optional "Add to calendar" link — generate one at https://www.addevent.com/
+  calendarLink: "#",
+
+  closingText: "Your presence would mean the world to us as we begin this new chapter together, In Sha Allah.",
+  closingSub: "With love and gratitude"
+};
+/* ============================================================
+   Nothing below this line needs to change.
+============================================================= */
+
+function setText(id, html){
+  const el = document.getElementById(id);
+  if(el) el.innerHTML = html;
+}
+
+setText('hero-bride', WEDDING_DATA.bride);
+setText('hero-groom', WEDDING_DATA.groom);
+setText('hero-date', WEDDING_DATA.heroDate);
+setText('invocation-text', WEDDING_DATA.invocation);
+setText('bride-family-title', WEDDING_DATA.brideFamily.title);
+setText('bride-family-text', WEDDING_DATA.brideFamily.text);
+setText('groom-family-title', WEDDING_DATA.groomFamily.title);
+setText('groom-family-text', WEDDING_DATA.groomFamily.text);
+setText('invite-body-text', WEDDING_DATA.inviteBody);
+setText('couple-line-text', WEDDING_DATA.coupleLine);
+setText('save-date-day', WEDDING_DATA.dateDay);
+setText('save-date-month', WEDDING_DATA.dateMonthYear);
+setText('save-date-weekday', WEDDING_DATA.dateWeekday);
+setText('venue-name', WEDDING_DATA.venueName);
+setText('venue-address', WEDDING_DATA.venueAddress);
+setText('venue-time', WEDDING_DATA.venueTime);
+setText('closing-text', WEDDING_DATA.closingText);
+setText('closing-names', WEDDING_DATA.coupleLine);
+setText('closing-sub', WEDDING_DATA.closingSub);
+document.title = WEDDING_DATA.bride + " & " + WEDDING_DATA.groom + " — Wedding Invitation";
+
+const calLink = document.getElementById('calendar-link');
+if(calLink) calLink.href = WEDDING_DATA.calendarLink;
+
+/* scroll reveal */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+},{ threshold:0.15 });
+revealEls.forEach(el=>io.observe(el));
+
+/* music toggle */
+const musicBtn = document.getElementById('musicBtn');
+const bgAudio = document.getElementById('bgAudio');
+musicBtn.addEventListener('click', ()=>{
+  if(bgAudio.paused){
+    bgAudio.play().then(()=>{
+      musicBtn.classList.add('playing');
+      musicBtn.setAttribute('aria-label','Pause background music');
+    }).catch(()=>{
+      alert('Add a song.mp3 file to your GitHub repo (same folder as index.html) to enable music.');
+    });
+  } else {
+    bgAudio.pause();
+    musicBtn.classList.remove('playing');
+    musicBtn.setAttribute('aria-label','Play background music');
+  }
+});
+</script>
+</body>
+</html>
