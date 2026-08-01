@@ -90,6 +90,26 @@
     margin:0 auto;
   }
 
+  /* ---------- bismillah bar ---------- */
+  .bismillah-bar{
+    text-align:center;
+    padding:22px 16px 18px;
+    background:var(--deep-green);
+  }
+  .bismillah-arabic{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.5rem;
+    color:var(--gold-light);
+    letter-spacing:0.02em;
+  }
+  .bismillah-en{
+    margin-top:6px;
+    font-size:0.72rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--ivory-dim);
+  }
+
   /* ---------- hero ---------- */
   .hero{
     min-height:100svh;
@@ -301,35 +321,6 @@
     color:var(--ivory-dim);
   }
 
-  /* ---------- music toggle ---------- */
-  .music-toggle{
-    position:fixed;
-    right:18px;
-    bottom:18px;
-    width:52px;
-    height:52px;
-    border-radius:50%;
-    border:1px solid var(--gold-soft);
-    background:rgba(10,54,38,0.85);
-    backdrop-filter:blur(4px);
-    color:var(--gold-light);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    z-index:50;
-    transition:transform 0.2s ease, background 0.2s ease;
-  }
-  .music-toggle:hover{ transform:scale(1.06); }
-  .music-toggle svg{ width:20px; height:20px; }
-  .music-toggle.playing svg .bar{ animation:pulse 0.9s ease-in-out infinite; }
-  .music-toggle .bar:nth-child(2){ animation-delay:0.15s; }
-  .music-toggle .bar:nth-child(3){ animation-delay:0.3s; }
-  @keyframes pulse{
-    0%,100%{ transform:scaleY(0.5); }
-    50%{ transform:scaleY(1); }
-  }
-
   /* ---------- reveal on scroll ---------- */
   .reveal{
     opacity:0;
@@ -358,6 +349,12 @@
 </head>
 <body>
 
+<!-- ============ BISMILLAH ============ -->
+<div class="bismillah-bar">
+  <div class="bismillah-arabic">بِسْمِ ٱللّٰهِ ٱلرَّحْمٰنِ ٱلرَّحِيمِ</div>
+  <div class="bismillah-en">with the blessings of Allah</div>
+</div>
+
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="arch-frame reveal in">
@@ -365,11 +362,11 @@
       <path d="M15.5 3.5a8.5 8.5 0 1 0 5 15.4A9.5 9.5 0 0 1 15.5 3.5Z"/>
       <path d="M18 6.2l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5.5-1.3Z"/>
     </svg>
-    <div class="eyebrow" id="hero-eyebrow">Walima &amp; Nikah Invitation</div>
+    <div class="eyebrow" id="hero-eyebrow">Nikah Invitation</div>
     <h1 class="hero-names">
-      <span class="script" id="hero-bride" style="font-size:1.5em;"></span>
-      <span class="amp" id="hero-amp">weds</span>
       <span class="script" id="hero-groom" style="font-size:1.5em;"></span>
+      <span class="amp" id="hero-amp">weds</span>
+      <span class="script" id="hero-bride" style="font-size:1.5em;"></span>
     </h1>
     <div class="hero-date" id="hero-date"></div>
   </div>
@@ -399,12 +396,12 @@
 
     <div class="families">
       <div class="family-block">
-        <h3 id="bride-family-title"></h3>
-        <p id="bride-family-text"></p>
-      </div>
-      <div class="family-block">
         <h3 id="groom-family-title"></h3>
         <p id="groom-family-text"></p>
+      </div>
+      <div class="family-block">
+        <h3 id="bride-family-title"></h3>
+        <p id="bride-family-text"></p>
       </div>
     </div>
 
@@ -458,18 +455,7 @@
 
 <footer>Made with love</footer>
 
-<!-- ============ MUSIC TOGGLE ============ -->
-<button class="music-toggle" id="musicBtn" aria-label="Play background music">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-    <rect class="bar" x="5" y="9" width="2.4" height="6" rx="1"/>
-    <rect class="bar" x="10.8" y="6" width="2.4" height="12" rx="1"/>
-    <rect class="bar" x="16.6" y="10.5" width="2.4" height="4.5" rx="1"/>
-  </svg>
-</button>
-<!-- Add your own mp3 file to the repo (e.g. "song.mp3") and update the src below -->
-<audio id="bgAudio" loop preload="none">
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
+
 
 <script>
 /* ============================================================
@@ -499,7 +485,7 @@ const WEDDING_DATA = {
 
   inviteBody: "Together with their families, request the honour of your presence at the Nikah ceremony, as they begin their journey as husband and wife, In Sha Allah.",
 
-  coupleLine: "Ayesha &amp; Khaleel",
+  coupleLine: "Khaleel &amp; Ayesha",
 
   // Save the date card
   dateDay: "23",
@@ -508,10 +494,10 @@ const WEDDING_DATA = {
 
   venueName: "VGP Marriage Hall",
   venueAddress: "S.N. Chetty Street, Royapuram — 600 013",
-  venueTime: "Nikah: 11:00 AM to 11:30 AM· Walima Reception: 7:30 PM",
+  venueTime: "Nikah: 11:00 AM to 11:30 AM",
   // What to search for on Google Maps — paste the exact venue name + city,
   // or (more accurate) paste a Google Maps link's coordinates like "12.9716,77.5946"
-  venueMapQuery: "13.116562391413503, 80.2926377",
+  venueMapQuery: "13.116583289262465, 80.2925947845624",
 
   // Event start/end time for the "Add to Calendar" buttons.
   // Format: "YYYY-MM-DDTHH:MM" in 24-hour time (e.g. 4:00 PM = 16:00)
@@ -610,23 +596,7 @@ const io = new IntersectionObserver((entries)=>{
 },{ threshold:0.15 });
 revealEls.forEach(el=>io.observe(el));
 
-/* music toggle */
-const musicBtn = document.getElementById('musicBtn');
-const bgAudio = document.getElementById('bgAudio');
-musicBtn.addEventListener('click', ()=>{
-  if(bgAudio.paused){
-    bgAudio.play().then(()=>{
-      musicBtn.classList.add('playing');
-      musicBtn.setAttribute('aria-label','Pause background music');
-    }).catch(()=>{
-      alert('Add a song.mp3 file to your GitHub repo (same folder as index.html) to enable music.');
-    });
-  } else {
-    bgAudio.pause();
-    musicBtn.classList.remove('playing');
-    musicBtn.setAttribute('aria-label','Play background music');
-  }
-});
+
 </script>
 </body>
 </html>
