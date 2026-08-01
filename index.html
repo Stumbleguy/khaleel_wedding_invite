@@ -265,6 +265,25 @@
     transition:background 0.25s ease, color 0.25s ease;
   }
   .add-calendar:hover{ background:var(--gold); color:var(--deep-green); }
+  .cal-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+    margin-top:26px;
+  }
+  .cal-buttons .add-calendar{ margin-top:0; font-size:0.72rem; padding:11px 20px; }
+  .map-wrap{
+    margin-top:26px;
+    border:1px solid var(--gold-soft);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .cal-buttons .add-calendar.primary{
+    background:var(--gold);
+    color:var(--deep-green);
+    border-color:var(--gold);
+  }
 
   /* ---------- closing blessing ---------- */
   .closing{
@@ -408,9 +427,18 @@
       <div class="venue-name" id="venue-name"></div>
       <div class="venue-address" id="venue-address"></div>
       <div class="venue-time" id="venue-time"></div>
+
+      <div class="map-wrap">
+        <iframe id="venue-map" width="100%" height="220" style="border:0;border-radius:6px;filter:grayscale(0.3) sepia(0.15);" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <a class="add-calendar" id="get-directions" href="#" target="_blank" rel="noopener" style="margin-top:14px;">Get Directions</a>
     </div>
 
-    <a class="add-calendar" id="calendar-link" href="#" target="_blank" rel="noopener">Add to Calendar</a>
+    <div class="cal-buttons">
+      <a class="add-calendar primary" id="cal-google" href="#" target="_blank" rel="noopener">Add to Google Calendar</a>
+      <a class="add-calendar" id="cal-outlook" href="#" target="_blank" rel="noopener">Outlook</a>
+      <a class="add-calendar" id="cal-ics" href="#" download="wedding-invite.ics">Apple / Other (.ics)</a>
+    </div>
   </div>
 </section>
 
@@ -449,8 +477,10 @@
    change names, dates, venues and messages.
 ============================================================= */
 const WEDDING_DATA = {
-  bride: "Ayesha Siddiqua",
-  groom: "Khaleel Ahamed",
+  bride: "Ayesha",
+  groom: "Khaleel",
+  brideFullName: "Ayesha Siddiqua",
+  groomFullName: "Khaleel Ahamed",
 
   // Shown under the couple's names in the very first screen
   heroDate: "23rd • August • 2026",
@@ -460,11 +490,11 @@ const WEDDING_DATA = {
 
   brideFamily: {
     title: "Bride's Family",
-    text: "Daughter of Mr. Sajid Baig & Mrs. Shabana Begum"
+    text: "Ayesha Siddiqua<br>Daughter of Mr. Sajid Baig &amp; Mrs. Shabana Begum"
   },
   groomFamily: {
     title: "Groom's Family",
-    text: "Son of Mr. Abdul Ajees (Late) & Mrs. Fazalunnisa"
+    text: "Khaleel Ahamed<br>Son of (Late) Mr. Abdul Ajees &amp; Mrs. Fazalunnisa"
   },
 
   inviteBody: "Together with their families, request the honour of your presence at the Nikah ceremony, as they begin their journey as husband and wife, In Sha Allah.",
@@ -477,11 +507,18 @@ const WEDDING_DATA = {
   dateWeekday: "Sunday",
 
   venueName: "VGP Marriage Hall",
-  venueAddress: "No. 504/146, S.N Chetty Street, Royapuram — 600 013",
-  venueTime: "Nikah: 11:00 AM - 11:30 AM · Walima Reception: 7:30 PM",
+  venueAddress: "S.N. Chetty Street, Royapuram — 600 013",
+  venueTime: "Nikah: 11:00 AM to 11:30 AM· Walima Reception: 7:30 PM",
+  // What to search for on Google Maps — paste the exact venue name + city,
+  // or (more accurate) paste a Google Maps link's coordinates like "12.9716,77.5946"
+  venueMapQuery: "13.116562391413503, 80.2926377",
 
-  // Optional "Add to calendar" link — generate one at https://www.addevent.com/
-  calendarLink: "https://www.addevent.com/event/8yl7p7ng9tzl",
+  // Event start/end time for the "Add to Calendar" buttons.
+  // Format: "YYYY-MM-DDTHH:MM" in 24-hour time (e.g. 4:00 PM = 16:00)
+  eventStart: "2026-08-23T11:00",
+  eventEnd:   "2026-08-23T11:30",
+  // Set this to your correct timezone, e.g. "Asia/Kolkata", "Asia/Dubai", "America/New_York"
+  eventTimezone: "Asia/Kolkata",
 
   closingText: "Your presence would mean the world to us as we begin this new chapter together, In Sha Allah.",
   closingSub: "With love and gratitude"
@@ -516,8 +553,53 @@ setText('closing-names', WEDDING_DATA.coupleLine);
 setText('closing-sub', WEDDING_DATA.closingSub);
 document.title = WEDDING_DATA.bride + " & " + WEDDING_DATA.groom + " — Wedding Invitation";
 
-const calLink = document.getElementById('calendar-link');
-if(calLink) calLink.href = WEDDING_DATA.calendarLink;
+/* ---- Map embed + directions (no API key needed) ---- */
+const mapQuery = encodeURIComponent(WEDDING_DATA.venueMapQuery);
+const mapFrame = document.getElementById('venue-map');
+if(mapFrame) mapFrame.src = `https://maps.google.com/maps?q=${mapQuery}&output=embed`;
+
+const directionsBtn = document.getElementById('get-directions');
+if(directionsBtn) directionsBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`;
+
+/* ---- Add to Calendar: built locally, no third-party service ---- */
+function toUtcStamp(localDateTimeStr){
+  // Treats the given string as local time, converts to the compact UTC
+  // format calendar links expect: YYYYMMDDTHHMMSSZ
+  const d = new Date(localDateTimeStr);
+  return d.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+}
+
+const evTitle = `${WEDDING_DATA.bride} & ${WEDDING_DATA.groom} — Wedding`;
+const evLocation = `${WEDDING_DATA.venueName}, ${WEDDING_DATA.venueAddress}`;
+const evDetails = WEDDING_DATA.inviteBody;
+const startStamp = toUtcStamp(WEDDING_DATA.eventStart);
+const endStamp = toUtcStamp(WEDDING_DATA.eventEnd);
+
+// Google Calendar
+const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(evTitle)}&dates=${startStamp}/${endStamp}&details=${encodeURIComponent(evDetails)}&location=${encodeURIComponent(evLocation)}`;
+const googleBtn = document.getElementById('cal-google');
+if(googleBtn) googleBtn.href = googleUrl;
+
+// Outlook (web)
+const outlookUrl = `https://outlook.live.com/calendar/0/action/compose?rru=addevent&startdt=${WEDDING_DATA.eventStart}&enddt=${WEDDING_DATA.eventEnd}&subject=${encodeURIComponent(evTitle)}&location=${encodeURIComponent(evLocation)}&body=${encodeURIComponent(evDetails)}`;
+const outlookBtn = document.getElementById('cal-outlook');
+if(outlookBtn) outlookBtn.href = outlookUrl;
+
+// Universal .ics file (Apple Calendar, and a fallback for everyone else)
+const icsContent = [
+  'BEGIN:VCALENDAR',
+  'VERSION:2.0',
+  'BEGIN:VEVENT',
+  `DTSTART:${startStamp}`,
+  `DTEND:${endStamp}`,
+  `SUMMARY:${evTitle}`,
+  `DESCRIPTION:${evDetails}`,
+  `LOCATION:${evLocation}`,
+  'END:VEVENT',
+  'END:VCALENDAR'
+].join('\r\n');
+const icsBtn = document.getElementById('cal-ics');
+if(icsBtn) icsBtn.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
 
 /* scroll reveal */
 const revealEls = document.querySelectorAll('.reveal');
