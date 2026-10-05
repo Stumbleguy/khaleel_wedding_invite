@@ -1,602 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nethravathi &amp; Mathivanan | Wedding Invitation</title>
+<meta name="description" content="Join us in celebrating the wedding of Nethravathi and Mathivanan" />
 
-<!-- ============================================================
-  HOW TO CUSTOMIZE THIS PAGE
-  Scroll all the way down to the <script> tag near the bottom
-  and edit the WEDDING_DATA object. That single object controls
-  every name, date, venue and message on the page — you don't
-  need to touch the HTML or CSS at all.
-============================================================= -->
-
+<!-- Fonts: Cinzel for the carved-stone display type, EB Garamond for reading text -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
-<style>
-  :root{
-    --deep-green:#0a3626;
-    --mid-green:#123f2e;
-    --panel-green:#0e4433;
-    --gold:#c9a24b;
-    --gold-light:#e9d18e;
-    --gold-soft: rgba(201,162,75,0.35);
-    --ivory:#f7f2e6;
-    --ivory-dim: rgba(247,242,230,0.72);
-  }
-
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--deep-green);
-    color:var(--ivory);
-    font-family:'Jost', sans-serif;
-    font-weight:300;
-    overflow-x:hidden;
-  }
-
-  .eyebrow{
-    font-family:'Jost',sans-serif;
-    font-size:0.72rem;
-    letter-spacing:0.35em;
-    text-transform:uppercase;
-    color:var(--gold-light);
-    opacity:0.85;
-  }
-
-  h1,h2,h3{
-    font-family:'Cormorant Garamond', serif;
-    font-weight:500;
-    margin:0;
-  }
-
-  .script{
-    font-family:'Great Vibes', cursive;
-    color:var(--gold-light);
-    line-height:1;
-  }
-
-  /* ---------- ornament: eight-point star divider ---------- */
-  .motif{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:14px;
-    margin:28px 0;
-    opacity:0.9;
-  }
-  .motif .line{
-    height:1px;
-    width:56px;
-    background:linear-gradient(90deg, transparent, var(--gold), transparent);
-  }
-  .motif svg{ width:20px; height:20px; }
-
-  /* ---------- section shell ---------- */
-  section{
-    position:relative;
-    padding:90px 24px;
-    text-align:center;
-  }
-  .panel-alt{ background:var(--panel-green); }
-
-  .container{
-    max-width:640px;
-    margin:0 auto;
-  }
-
-  /* ---------- bismillah bar ---------- */
-  .bismillah-bar{
-    text-align:center;
-    padding:22px 16px 18px;
-    background:var(--deep-green);
-  }
-  .bismillah-arabic{
-    font-family:'Cormorant Garamond', serif;
-    font-size:1.5rem;
-    color:var(--gold-light);
-    letter-spacing:0.02em;
-  }
-  .bismillah-en{
-    margin-top:6px;
-    font-size:0.72rem;
-    letter-spacing:0.25em;
-    text-transform:uppercase;
-    color:var(--ivory-dim);
-  }
-
-  /* ---------- hero ---------- */
-  .hero{
-    min-height:100svh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:60px 24px;
-    background:
-      radial-gradient(ellipse at 50% 0%, rgba(201,162,75,0.10), transparent 60%),
-      var(--deep-green);
-  }
-
-  .arch-frame{
-    position:relative;
-    width:min(78vw,340px);
-    padding:52px 26px 40px;
-    border:1px solid var(--gold-soft);
-    border-radius:170px 170px 8px 8px;
-    background:rgba(201,162,75,0.03);
-  }
-  .arch-frame::before{
-    content:"";
-    position:absolute;
-    inset:10px;
-    border:1px solid var(--gold-soft);
-    border-radius:150px 150px 4px 4px;
-  }
-  .crescent-mark{
-    width:34px; height:34px;
-    margin:0 auto 18px;
-    color:var(--gold);
-    opacity:0.9;
-  }
-  .hero .eyebrow{ margin-bottom:6px; }
-  .hero-names{
-    font-size:clamp(2.6rem, 9vw, 3.6rem);
-    line-height:1.15;
-  }
-  .amp{
-    display:block;
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:1.1rem;
-    color:var(--ivory-dim);
-    margin:6px 0;
-    letter-spacing:0.15em;
-  }
-  .hero-date{
-    margin-top:18px;
-    font-family:'Cormorant Garamond', serif;
-    font-size:1.05rem;
-    letter-spacing:0.12em;
-    color:var(--ivory-dim);
-  }
-  .scroll-cue{
-    margin-top:46px;
-    font-size:0.68rem;
-    letter-spacing:0.3em;
-    text-transform:uppercase;
-    color:var(--ivory-dim);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:8px;
-    animation:floaty 2.6s ease-in-out infinite;
-  }
-  .scroll-cue span{ opacity:0.7; }
-  @keyframes floaty{
-    0%,100%{ transform:translateY(0); }
-    50%{ transform:translateY(6px); }
-  }
-
-  /* ---------- bismillah / invocation ---------- */
-  .invocation{
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:1.15rem;
-    line-height:1.8;
-    color:var(--ivory-dim);
-    max-width:520px;
-    margin:0 auto;
-  }
-
-  /* ---------- family invitation ---------- */
-  .families{
-    display:flex;
-    gap:36px;
-    justify-content:center;
-    flex-wrap:wrap;
-    margin-top:30px;
-  }
-  .family-block{ max-width:220px; }
-  .family-block h3{
-    font-size:1.05rem;
-    letter-spacing:0.05em;
-    color:var(--gold-light);
-    margin-bottom:8px;
-  }
-  .family-block p{
-    font-size:0.92rem;
-    line-height:1.7;
-    color:var(--ivory-dim);
-    margin:0;
-  }
-  .invite-body{
-    margin-top:34px;
-    font-size:1.02rem;
-    line-height:1.9;
-    color:var(--ivory-dim);
-  }
-  .couple-line{
-    margin-top:24px;
-    font-family:'Cormorant Garamond', serif;
-    font-size:1.5rem;
-    color:var(--ivory);
-  }
-
-  /* ---------- save the date ---------- */
-  .date-card{
-    display:inline-block;
-    padding:34px 46px;
-    border:1px solid var(--gold-soft);
-    border-radius:6px;
-    background:rgba(201,162,75,0.05);
-    margin-top:10px;
-  }
-  .date-card .day{
-    font-family:'Cormorant Garamond', serif;
-    font-size:3.2rem;
-    color:var(--gold-light);
-    line-height:1;
-  }
-  .date-card .month-year{
-    margin-top:6px;
-    font-size:0.85rem;
-    letter-spacing:0.25em;
-    text-transform:uppercase;
-    color:var(--ivory-dim);
-  }
-  .weekday{
-    margin-top:14px;
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:1.15rem;
-    color:var(--ivory-dim);
-  }
-  .venue-block{
-    margin-top:30px;
-  }
-  .venue-name{
-    font-family:'Cormorant Garamond', serif;
-    font-size:1.3rem;
-    color:var(--ivory);
-  }
-  .venue-address, .venue-time{
-    margin-top:6px;
-    font-size:0.92rem;
-    color:var(--ivory-dim);
-    line-height:1.6;
-  }
-  .add-calendar{
-    display:inline-block;
-    margin-top:26px;
-    padding:12px 28px;
-    border:1px solid var(--gold);
-    border-radius:999px;
-    color:var(--gold-light);
-    text-decoration:none;
-    font-size:0.8rem;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-    transition:background 0.25s ease, color 0.25s ease;
-  }
-  .add-calendar:hover{ background:var(--gold); color:var(--deep-green); }
-  .cal-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:12px;
-    margin-top:26px;
-  }
-  .cal-buttons .add-calendar{ margin-top:0; font-size:0.72rem; padding:11px 20px; }
-  .map-wrap{
-    margin-top:26px;
-    border:1px solid var(--gold-soft);
-    border-radius:6px;
-    overflow:hidden;
-  }
-  .cal-buttons .add-calendar.primary{
-    background:var(--gold);
-    color:var(--deep-green);
-    border-color:var(--gold);
-  }
-
-  /* ---------- closing blessing ---------- */
-  .closing{
-    padding-bottom:60px;
-  }
-  .closing .invocation{ margin-bottom:10px; }
-  .signature-names{
-    margin-top:22px;
-    font-size:clamp(2rem,7vw,2.6rem);
-  }
-  .signature-sub{
-    margin-top:6px;
-    font-size:0.85rem;
-    letter-spacing:0.15em;
-    color:var(--ivory-dim);
-  }
-
-  /* ---------- reveal on scroll ---------- */
-  .reveal{
-    opacity:0;
-    transform:translateY(18px);
-    transition:opacity 0.9s ease, transform 0.9s ease;
-  }
-  .reveal.in{
-    opacity:1;
-    transform:translateY(0);
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .reveal{ opacity:1; transform:none; transition:none; }
-    .scroll-cue{ animation:none; }
-  }
-
-  footer{
-    text-align:center;
-    padding:26px;
-    font-size:0.7rem;
-    letter-spacing:0.1em;
-    color:var(--ivory-dim);
-    opacity:0.5;
-  }
-</style>
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<!-- ============ BISMILLAH ============ -->
-<div class="bismillah-bar">
-  <div class="bismillah-arabic">بِسْمِ ٱللّٰهِ ٱلرَّحْمٰنِ ٱلرَّحِيمِ</div>
-  <div class="bismillah-en">with the blessings of Allah</div>
-</div>
+<!-- ============ HERO: the gopuram doors ============ -->
+<section id="hero" class="hero">
+  <div class="gopuram-wrap" id="gopuramWrap" aria-hidden="true">
+    <!-- SVG towers are drawn in by js/gopuram.js -->
+    <svg id="gopuramSvg" class="gopuram-svg" viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="door-panel door-left" id="doorLeft"></div>
+    <div class="door-panel door-right" id="doorRight"></div>
+  </div>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="arch-frame reveal in">
-    <svg class="crescent-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-      <path d="M15.5 3.5a8.5 8.5 0 1 0 5 15.4A9.5 9.5 0 0 1 15.5 3.5Z"/>
-      <path d="M18 6.2l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5.5-1.3Z"/>
+  <p class="scroll-cue" id="scrollCue">Scroll to open &darr;</p>
+</section>
+
+<!-- ============ NAMES / WELCOME ============ -->
+<section id="welcome" class="section welcome-section reveal">
+  <div class="leaf leaf-left" aria-hidden="true">&#127796;</div>
+  <div class="leaf leaf-right" aria-hidden="true">&#127796;</div>
+
+  <div class="emblem" aria-hidden="true">
+    <svg viewBox="0 0 80 80" width="56" height="56">
+      <circle cx="40" cy="40" r="36" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M40 20 L46 34 L60 34 L49 43 L53 58 L40 49 L27 58 L31 43 L20 34 L34 34 Z" fill="currentColor" opacity="0.85"/>
     </svg>
-    <div class="eyebrow" id="hero-eyebrow">Nikah Invitation</div>
-    <h1 class="hero-names">
-      <span class="script" id="hero-groom" style="font-size:1.5em;"></span>
-      <span class="amp" id="hero-amp">weds</span>
-      <span class="script" id="hero-bride" style="font-size:1.5em;"></span>
-    </h1>
-    <div class="hero-date" id="hero-date"></div>
   </div>
-  <div class="scroll-cue">
-    <span>Scroll to open</span>
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
-  </div>
+
+  <p class="with-blessings">With the blessings of our parents<br/>
+  Paramanandham &amp; Malathy &middot; Rajendhran &amp; Parameshwari</p>
+
+  <h1 class="couple-names">
+    <span class="bride-name">P. Nethravathi</span>
+    <span class="weds">weds</span>
+    <span class="groom-name">R. Mathivanan</span>
+  </h1>
+
+  <p class="headline-date">Saturday, November 14, 2026 &middot; 12:00 PM</p>
+  <p class="headline-venue">Meera Mahal, 18/1, Periyar Nagar, Shanthi Nagar East, Hosur</p>
+
+  <p class="welcome-message">
+    Two families, two stories, one beginning. We would be honoured to have you
+    with us as we begin this new chapter &mdash; with laughter, good food, and
+    the people who matter most.
+  </p>
 </section>
 
-<!-- ============ INVOCATION ============ -->
-<section class="reveal">
-  <div class="container">
-    <p class="invocation" id="invocation-text"></p>
-    <div class="motif">
-      <div class="line"></div>
-      <svg viewBox="0 0 24 24" fill="none" stroke="#c9a24b" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.2 2.2 6.8L12 15.6l-5.6 4.2 2.2-6.8L3 8.8h6.8L12 2z"/></svg>
-      <div class="line"></div>
-    </div>
-  </div>
-</section>
+<!-- ============ THE FESTIVITIES ============ -->
+<section id="festivities" class="section festivities-section reveal">
+  <h2 class="section-title">The Festivities</h2>
 
-<!-- ============ FAMILY INVITATION ============ -->
-<section class="panel-alt reveal">
-  <div class="container">
-    <div class="eyebrow">With Love &amp; Blessings</div>
-    <h2 style="font-size:1.6rem;margin-top:10px;">An Invitation From Our Families</h2>
+  <div class="event-cards">
 
-    <div class="families">
-      <div class="family-block">
-        <h3 id="groom-family-title"></h3>
-        <p id="groom-family-text"></p>
+    <article class="event-card reveal">
+      <div class="event-art" aria-hidden="true">
+        <svg viewBox="0 0 200 120" class="event-motif">
+          <path d="M100 20 L108 45 L134 45 L113 60 L121 85 L100 70 L79 85 L87 60 L66 45 L92 45 Z" />
+        </svg>
       </div>
-      <div class="family-block">
-        <h3 id="bride-family-title"></h3>
-        <p id="bride-family-text"></p>
+      <div class="event-body">
+        <h3>Wedding</h3>
+        <p class="event-when">Saturday, November 14, 2026 &middot; 12:00 PM</p>
+        <p class="event-where">Meera Mahal, 18/1, Periyar Nagar,<br/>Shanthi Nagar East, Hosur</p>
       </div>
-    </div>
+    </article>
 
-    <p class="invite-body" id="invite-body-text"></p>
-    <p class="couple-line" id="couple-line-text"></p>
-  </div>
-</section>
-
-<!-- ============ SAVE THE DATE ============ -->
-<section class="reveal">
-  <div class="container">
-    <div class="eyebrow">Save The Date</div>
-    <div class="date-card">
-      <div class="day" id="save-date-day"></div>
-      <div class="month-year" id="save-date-month"></div>
-      <div class="weekday" id="save-date-weekday"></div>
-    </div>
-
-    <div class="venue-block">
-      <div class="venue-name" id="venue-name"></div>
-      <div class="venue-address" id="venue-address"></div>
-      <div class="venue-time" id="venue-time"></div>
-
-      <div class="map-wrap">
-        <iframe id="venue-map" width="100%" height="220" style="border:0;border-radius:6px;filter:grayscale(0.3) sepia(0.15);" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <article class="event-card reveal">
+      <div class="event-art" aria-hidden="true">
+        <svg viewBox="0 0 200 120" class="event-motif">
+          <circle cx="100" cy="55" r="30" />
+          <path d="M100 25 L100 5 M75 35 L60 20 M125 35 L140 20" stroke-linecap="round"/>
+        </svg>
       </div>
-      <a class="add-calendar" id="get-directions" href="#" target="_blank" rel="noopener" style="margin-top:14px;">Get Directions</a>
-    </div>
+      <div class="event-body">
+        <h3>Muhurtham</h3>
+        <p class="event-when">Sunday, November 15, 2026 &middot; 12:00 PM</p>
+        <p class="event-where">Meera Mahal, 18/1, Periyar Nagar,<br/>Shanthi Nagar East, Hosur</p>
+      </div>
+    </article>
 
-    <div class="cal-buttons">
-      <a class="add-calendar primary" id="cal-google" href="#" target="_blank" rel="noopener">Add to Google Calendar</a>
-      <a class="add-calendar" id="cal-outlook" href="#" target="_blank" rel="noopener">Outlook</a>
-      <a class="add-calendar" id="cal-ics" href="#" download="wedding-invite.ics">Apple / Other (.ics)</a>
+    <article class="event-card reveal">
+      <div class="event-art" aria-hidden="true">
+        <svg viewBox="0 0 200 120" class="event-motif">
+          <path d="M60 90 Q100 20 140 90 Z" />
+          <line x1="50" y1="90" x2="150" y2="90" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="event-body">
+        <h3>Reception</h3>
+        <p class="event-when">Friday, November 20, 2026 &middot; 12:00 PM</p>
+        <p class="event-where">Sri Dhanalakshmi Mahal (AC),<br/>Tindivanam Road, Gingee</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ OUR STORY ============ -->
+<section id="story" class="section story-section reveal">
+  <div class="ornament" aria-hidden="true">&#10024;</div>
+  <h2 class="section-title light">Our Story</h2>
+  <div class="story-text">
+    <p>
+      It started the way most good things do &mdash; quietly, without any warning
+      that it would matter. A conversation here, a shared joke there, and somewhere
+      along the way, two lives that were doing just fine on their own started to
+      feel a little better together.
+    </p>
+    <p>
+      What we found in each other wasn't a grand plan &mdash; it was patience,
+      the kind of laughter that makes long days shorter, and the comfort of
+      knowing someone is genuinely on your side. Slowly, "we should talk again
+      sometime" became "I can't imagine not talking to you," and that became
+      the easiest decision either of us has ever made.
+    </p>
+    <p>
+      Now, we're ready for the next part &mdash; and we'd love nothing more than
+      to have the people who've shaped our lives sitting right there with us
+      when it happens.
+    </p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <p class="timeline-date">Edit me &mdash; e.g. March 2018</p>
+      <h4>First Meeting</h4>
+      <p>Say where and how you met. Keep it short and specific.</p>
+    </div>
+    <div class="timeline-item reveal">
+      <p class="timeline-date">Edit me</p>
+      <h4>Made It Official</h4>
+      <p>The moment it became a real "us." One or two lines is plenty.</p>
+    </div>
+    <div class="timeline-item reveal">
+      <p class="timeline-date">Edit me</p>
+      <h4>The Proposal</h4>
+      <p>Where it happened, and how it went. This is usually everyone's favourite one.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ CLOSING BLESSING ============ -->
-<section class="panel-alt closing reveal">
-  <div class="container">
-    <p class="invocation" id="closing-text"></p>
-    <div class="motif">
-      <div class="line"></div>
-      <svg viewBox="0 0 24 24" fill="none" stroke="#c9a24b" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.2 2.2 6.8L12 15.6l-5.6 4.2 2.2-6.8L3 8.8h6.8L12 2z"/></svg>
-      <div class="line"></div>
+<!-- ============ RSVP ============ -->
+<section id="rsvp" class="section rsvp-section reveal">
+  <div class="ornament" aria-hidden="true">&#10024;</div>
+  <h2 class="section-title light">RSVP</h2>
+  <p class="rsvp-intro">We'd love to celebrate with you. Please let us know if you can make it, by <strong>October 25, 2026</strong>.</p>
+
+  <form id="rsvpForm" class="rsvp-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <label>
+      Your Name *
+      <input type="text" name="name" required />
+    </label>
+
+    <label>
+      Your Email (optional)
+      <input type="email" name="email" />
+    </label>
+
+    <label>
+      Phone Number (optional)
+      <input type="tel" name="phone" />
+    </label>
+
+    <fieldset class="event-checks">
+      <legend>Which events will you attend? *</legend>
+
+      <label class="check-row">
+        <input type="checkbox" name="events" value="Wedding – Nov 14" />
+        <span><strong>Wedding</strong><br/>November 14, 2026 at 12:00 PM &middot; Meera Mahal, Hosur</span>
+      </label>
+
+      <label class="check-row">
+        <input type="checkbox" name="events" value="Muhurtham – Nov 15" />
+        <span><strong>Muhurtham</strong><br/>November 15, 2026 at 12:00 PM &middot; Meera Mahal, Hosur</span>
+      </label>
+
+      <label class="check-row">
+        <input type="checkbox" name="events" value="Reception – Nov 20" />
+        <span><strong>Reception</strong><br/>November 20, 2026 at 12:00 PM &middot; Sri Dhanalakshmi Mahal, Gingee</span>
+      </label>
+    </fieldset>
+
+    <label>
+      Your Message (optional)
+      <textarea name="message" rows="3" placeholder="Any special notes or dietary restrictions?"></textarea>
+    </label>
+
+    <button type="submit" class="submit-btn">Submit RSVP</button>
+    <p id="rsvpStatus" class="rsvp-status" role="status"></p>
+  </form>
+</section>
+
+<!-- ============ LOCATION / MAP ============ -->
+<section id="location" class="section location-section reveal">
+  <h2 class="section-title">Venue &amp; Directions</h2>
+
+  <div class="venue-block reveal">
+    <h3>Wedding &amp; Muhurtham</h3>
+    <p>Meera Mahal, 18/1, Periyar Nagar, Shanthi Nagar East, Hosur</p>
+    <div class="map-frame">
+      <iframe
+        title="Map to Meera Mahal, Hosur"
+        src="https://www.google.com/maps?q=Meera+Mahal,+18/1,+Periyar+Nagar,+Shanthi+Nagar+East,+Hosur&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
-    <div class="script signature-names" id="closing-names"></div>
-    <div class="signature-sub" id="closing-sub"></div>
+    <a class="directions-btn" target="_blank" rel="noopener"
+       href="https://www.google.com/maps/dir/?api=1&destination=Meera+Mahal,+18/1,+Periyar+Nagar,+Shanthi+Nagar+East,+Hosur">
+       Get Directions
+    </a>
+  </div>
+
+  <div class="venue-block reveal">
+    <h3>Reception</h3>
+    <p>Sri Dhanalakshmi Mahal (AC), Tindivanam Road, Gingee</p>
+    <div class="map-frame">
+      <iframe
+        title="Map to Sri Dhanalakshmi Mahal, Gingee"
+        src="https://www.google.com/maps?q=Sri+Dhanalakshmi+Mahal,+Tindivanam+Road,+Gingee&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <a class="directions-btn" target="_blank" rel="noopener"
+       href="https://www.google.com/maps/dir/?api=1&destination=Sri+Dhanalakshmi+Mahal,+Tindivanam+Road,+Gingee">
+       Get Directions
+    </a>
   </div>
 </section>
 
-<footer>Made with love</footer>
+<footer class="site-footer">
+  <p>Nethravathi &amp; Mathivanan &middot; November 2026</p>
+</footer>
 
-
-
-<script>
-/* ============================================================
-   EDIT EVERYTHING HERE. This is the only place you need to
-   change names, dates, venues and messages.
-============================================================= */
-const WEDDING_DATA = {
-  bride: "Ayesha",
-  groom: "Khaleel",
-  brideFullName: "Ayesha Siddiqua",
-  groomFullName: "Khaleel Ahamed",
-
-  // Shown under the couple's names in the very first screen
-  heroDate: "23rd • August • 2026",
-
-  // A short Quranic verse or invocation line (edit or remove as you wish)
-  invocation: "“And among His signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them, and He has put love and mercy between your hearts.” — Surah Ar-Rum 30:21",
-
-  brideFamily: {
-    title: "Bride's Family",
-    text: "Ayesha Siddiqua<br>Daughter of Mr. Sajid Baig &amp; Mrs. Shabana Begum"
-  },
-  groomFamily: {
-    title: "Groom's Family",
-    text: "Khaleel Ahamed<br>Son of (Late) Mr. Abdul Ajees &amp; Mrs. Fazalunnisa"
-  },
-
-  inviteBody: "Together with their families, request the honour of your presence at the Nikah ceremony, as they begin their journey as husband and wife, In Sha Allah.",
-
-  coupleLine: "Khaleel &amp; Ayesha",
-
-  // Save the date card
-  dateDay: "23",
-  dateMonthYear: "August 2026",
-  dateWeekday: "Sunday",
-
-  venueName: "VGP Marriage Hall",
-  venueAddress: "S.N. Chetty Street, Royapuram — 600 013",
-  venueTime: "Nikah: 11:00 AM to 11:30 AM",
-  // What to search for on Google Maps — paste the exact venue name + city,
-  // or (more accurate) paste a Google Maps link's coordinates like "12.9716,77.5946"
-  venueMapQuery: "13.116583289262465, 80.2925947845624",
-
-  // Event start/end time for the "Add to Calendar" buttons.
-  // Format: "YYYY-MM-DDTHH:MM" in 24-hour time (e.g. 4:00 PM = 16:00)
-  eventStart: "2026-08-23T11:00",
-  eventEnd:   "2026-08-23T11:30",
-  // Set this to your correct timezone, e.g. "Asia/Kolkata", "Asia/Dubai", "America/New_York"
-  eventTimezone: "Asia/Kolkata",
-
-  closingText: "Your presence would mean the world to us as we begin this new chapter together, In Sha Allah.",
-  closingSub: "With love and gratitude"
-};
-/* ============================================================
-   Nothing below this line needs to change.
-============================================================= */
-
-function setText(id, html){
-  const el = document.getElementById(id);
-  if(el) el.innerHTML = html;
-}
-
-setText('hero-bride', WEDDING_DATA.bride);
-setText('hero-groom', WEDDING_DATA.groom);
-setText('hero-date', WEDDING_DATA.heroDate);
-setText('invocation-text', WEDDING_DATA.invocation);
-setText('bride-family-title', WEDDING_DATA.brideFamily.title);
-setText('bride-family-text', WEDDING_DATA.brideFamily.text);
-setText('groom-family-title', WEDDING_DATA.groomFamily.title);
-setText('groom-family-text', WEDDING_DATA.groomFamily.text);
-setText('invite-body-text', WEDDING_DATA.inviteBody);
-setText('couple-line-text', WEDDING_DATA.coupleLine);
-setText('save-date-day', WEDDING_DATA.dateDay);
-setText('save-date-month', WEDDING_DATA.dateMonthYear);
-setText('save-date-weekday', WEDDING_DATA.dateWeekday);
-setText('venue-name', WEDDING_DATA.venueName);
-setText('venue-address', WEDDING_DATA.venueAddress);
-setText('venue-time', WEDDING_DATA.venueTime);
-setText('closing-text', WEDDING_DATA.closingText);
-setText('closing-names', WEDDING_DATA.coupleLine);
-setText('closing-sub', WEDDING_DATA.closingSub);
-document.title = WEDDING_DATA.bride + " & " + WEDDING_DATA.groom + " — Wedding Invitation";
-
-/* ---- Map embed + directions (no API key needed) ---- */
-const mapQuery = encodeURIComponent(WEDDING_DATA.venueMapQuery);
-const mapFrame = document.getElementById('venue-map');
-if(mapFrame) mapFrame.src = `https://maps.google.com/maps?q=${mapQuery}&output=embed`;
-
-const directionsBtn = document.getElementById('get-directions');
-if(directionsBtn) directionsBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`;
-
-/* ---- Add to Calendar: built locally, no third-party service ---- */
-function toUtcStamp(localDateTimeStr){
-  // Treats the given string as local time, converts to the compact UTC
-  // format calendar links expect: YYYYMMDDTHHMMSSZ
-  const d = new Date(localDateTimeStr);
-  return d.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-}
-
-const evTitle = `${WEDDING_DATA.bride} & ${WEDDING_DATA.groom} — Wedding`;
-const evLocation = `${WEDDING_DATA.venueName}, ${WEDDING_DATA.venueAddress}`;
-const evDetails = WEDDING_DATA.inviteBody;
-const startStamp = toUtcStamp(WEDDING_DATA.eventStart);
-const endStamp = toUtcStamp(WEDDING_DATA.eventEnd);
-
-// Google Calendar
-const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(evTitle)}&dates=${startStamp}/${endStamp}&details=${encodeURIComponent(evDetails)}&location=${encodeURIComponent(evLocation)}`;
-const googleBtn = document.getElementById('cal-google');
-if(googleBtn) googleBtn.href = googleUrl;
-
-// Outlook (web)
-const outlookUrl = `https://outlook.live.com/calendar/0/action/compose?rru=addevent&startdt=${WEDDING_DATA.eventStart}&enddt=${WEDDING_DATA.eventEnd}&subject=${encodeURIComponent(evTitle)}&location=${encodeURIComponent(evLocation)}&body=${encodeURIComponent(evDetails)}`;
-const outlookBtn = document.getElementById('cal-outlook');
-if(outlookBtn) outlookBtn.href = outlookUrl;
-
-// Universal .ics file (Apple Calendar, and a fallback for everyone else)
-const icsContent = [
-  'BEGIN:VCALENDAR',
-  'VERSION:2.0',
-  'BEGIN:VEVENT',
-  `DTSTART:${startStamp}`,
-  `DTEND:${endStamp}`,
-  `SUMMARY:${evTitle}`,
-  `DESCRIPTION:${evDetails}`,
-  `LOCATION:${evLocation}`,
-  'END:VEVENT',
-  'END:VCALENDAR'
-].join('\r\n');
-const icsBtn = document.getElementById('cal-ics');
-if(icsBtn) icsBtn.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
-
-/* scroll reveal */
-const revealEls = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-  });
-},{ threshold:0.15 });
-revealEls.forEach(el=>io.observe(el));
-
-
-</script>
+<script src="js/gopuram.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
